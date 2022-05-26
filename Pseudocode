@@ -1,0 +1,782 @@
+import datetime
+
+FUNCTION get_location()
+    Print "Please select your location. 
+           1) VC1
+           2) VC2
+           Please select with number: "
+    Read location
+    DOWHILE location != 1 and location != 2
+        Print "Error: Invalid selection"
+        Print "Please select your location. 
+           1) VC1
+           2) VC2
+           Please select with number: "
+        Read location
+    ENDDO
+    IF location == "1" THEN
+        location = "VC1"
+    ELSE
+        location = "VC2"
+    ENDIF
+    RETURN location
+ENDFUNCTION
+
+
+FUNCTION get_age()
+    TRY
+        Print "Please enter your age within range of 12 to 100: "
+        Read age
+        DOWHILE age < 12 or age > 100
+            Print "Error: Age must be between 12 and 100 else ineligible."
+            Print "Please enter your age within range of 12 to 100: "
+            Read age
+        ENDDO
+        RETURN age
+    CATCH(ValueError)
+        Print "Error: Age must be in numerical form."
+        RETURN CALL get_age()
+ENDFUNCTION
+
+
+FUNCTION vaccine_selection(age)
+    IF age >= 12 and age < 18 THEN
+        Print "Please select vaccine. 
+               1) AF 
+               2) CZ 
+               3) DM 
+               Please select with number: "
+        Read vaccine
+        DOWHILE vaccine != 1 and vaccine != 2 and vaccine != 3
+            Print "Error: Invalid vaccine"
+            Print "Please select vaccine. 
+                   1) AF
+                   2) CZ 
+                   3) DM 
+                   Please select with number: "
+            Read vaccine
+        ENDDO
+        IF vaccine == 1 THEN
+            vaccine = "AF"
+        ELSE
+            IF vaccine == 2 THEN
+                vaccine = "CZ"
+            ELSE
+                vaccine = "DM"
+            ENDIF
+        ENDIF
+    ELSE
+        IF age >= 18 and age <= 45 THEN
+            Print "Please select vaccine.
+                   1) AF 
+                   2) BV 
+                   3) CZ 
+                   4) DM 
+                   5) EC 
+                   Please select with number: "
+            Read vaccine
+            DOWHILE vaccine != 1 and vaccine != 2 and vaccine != 3 and vaccine != 4 and vaccine != 5
+                Print "Error: Invalid vaccine"
+                Print "Please select vaccine.
+                       1) AF 
+                       2) BV 
+                       3) CZ 
+                       4) DM 
+                       5) EC 
+                       Please select with number: "
+                Read vaccine
+            ENDDO
+            IF vaccine == 1 THEN
+                vaccine = "AF"
+            ELSE
+                IF vaccine == 2 THEN
+                    vaccine = "BV"
+                ELSE
+                    IF vaccine == 3 THEN
+                        vaccine = "CZ"
+                    ELSE
+                        IF vaccine == 4 THEN
+                            vaccine = "DM"
+                        ELSE
+                            vaccine = "EC"
+                        ENDIF
+                    ENDIF
+                ENDIF
+            ENDIF
+    ELSE
+        Print "Please select vaccine.
+                1) AF 
+                2) BV 
+                3) DM 
+                4) EC 
+                Please select with number: "
+        Read vaccine
+        DOWHILE vaccine != 1 and vaccine != 2 and vaccine != 3 and vaccine != 4
+            Print "Error: Invalid vaccine"
+            Print "Please select vaccine.
+                    1) AF 
+                    2) BV 
+                    3) DM 
+                    4) EC 
+                    Please select with number: "
+            Read vaccine
+        ENDDO
+        IF vaccine == 1 THEN
+        vaccine = "AF"
+        ELSE
+            IF vaccine == 2 THEN
+                vaccine = "BV"
+            ELSE
+                IF vaccine == 3 THEN
+                    vaccine = "DM"
+                ELSE
+                    vaccine = "EC"
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+    RETURN vaccine
+ENDFUNCTION
+
+
+FUNCTION get_name()
+    Print "Please enter your name: "
+    Read name
+    DOWHILE name contains digits
+        Print "Error: Name contains number."
+        Print "Please enter your name: "
+        Read name
+    ENDDO
+    RETURN name
+ENDFUNCTION
+
+
+FUNCTION get_gender()
+    Print "Please enter your gender (M or F): "
+    Read gender
+    DOWHILE gender != "M" and gender != "F"
+        Print "Error: Invalid gender"
+        Print "Please enter your gender (M or F): "
+        Read gender
+    ENDDO
+    IF gender == "M"
+        gender = "MALE"
+    ELSE
+        gender = "FEMALE"
+    ENDIF
+    RETURN gender
+ENDFUNCTION
+
+
+FUNCTION get_weight()
+    TRY
+        Print "Please enter weight in kg: "
+        Read weight
+        DOWHILE weight <= 40
+            Print "Weight must be more than 40kg"
+            Print "Please enter weight in kg: "
+            Read weight
+        ENDDO
+        RETURN weight
+    CATCH(ValueError)
+        Print "Error: Weight must be in numerical form"
+        RETURN CALL get_weight()
+ENDFUNCTION
+
+
+FUNCTION get_blood_type()
+    Print "Please enter your blood type. 
+           1) A+ 
+           2) A- 
+           3) B+ 
+           4) B- 
+           5) AB+ 
+           6) AB- 
+           7) O+ 
+           8) O- 
+           Please select with number"
+    Read blood_type
+    DOWHILE blood_type != 1 and blood_type != 2 and blood_type != 3 and blood_type != 4 and blood_type != 5 and blood_type != 6 and blood_type != 7 and blood_type != 8
+        Print "Error: Invalid blood type"
+        Print "Please enter your blood type.
+               1) A+ 
+               2) A- 
+               3) B+ 
+               4) B- 
+               5) AB+ 
+               6) AB- 
+               7) O+ 
+               8) O- 
+               Please select with number"
+        Read blood_type
+    ENDDO
+    IF blood_type == 1 THEN
+        blood_type = "A+"
+    ELSE
+        IF blood_type == 2 THEN
+            blood_type = "A-"
+        ELSE
+            IF blood_type == 3 THEN
+                blood_type = "B+"
+            ELSE
+                IF blood_type == 4 THEN
+                    blood_type = "B-"
+                ELSE
+                    IF blood_type == 5 THEN
+                        blood_type = "AB+"
+                    ELSE
+                        IF blood_type == 6 THEN
+                            blood_type = "AB-"
+                        ELSE
+                            IF blood_type == 7 THEN
+                                blood_type = "O+"
+                            ELSE
+                                blood_type = "O-"
+                            ENDIF
+                        ENDIF
+                    ENDIF
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+    RETURN blood_type
+ENDFUNCTION
+
+
+FUNCTION get_medical_history()
+    Print "Please enter medical history.
+            1) Cardiovascular disease 
+            2) Respiratory disease 
+            3) Diabetes
+            4) None
+            5) Others (Please state) 
+            Please select with number: "
+    Read medical_input
+    DOWHILE medical_input != 1 and medical_input != 2 and medical_input != 3 and medical_input != 4  and medical_input != 5
+        Print "Error: Invalid medical input"
+        Print "Please enter medical history.
+                1) Cardiovasculat disease 
+                2) Respiratory disease 
+                3) Diabetes 
+                4) None 
+                5) Others (Please state) 
+                Please select with number: "
+        Read medical_input
+    ENDDO
+    IF medical_input == 1 THEN
+        RETURN "CARDIOVASCULAR DISEASE"
+    ELSE
+        IF medical_input == 2 THEN
+            RETURN "RESPIRATORY DISEASE"
+        ELSE
+            IF medical_input == 3 THEN
+                RETURN "DIABETES"
+            ELSE
+                IF medical_input == 4 THEN
+                    RETURN "NONE"
+                ELSE
+                    Print "Please enter your medical condition [r to return]: "
+                    Read medical_condition
+                    IF medical_condition != "R" and medical_condition does not contain any digits THEN
+                        RETURN medical_condition
+                    ELSE
+                        IF medical_condition == "R" THEN
+                            RETURN CALL get_medical_history()
+                        ELSE
+                            Print "Error: Medical consition must not contain any number"
+                            RETURN CALL get_medical_history()
+                        ENDIF
+                    ENDIF
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+ENDFUNCTION
+
+
+FUNCTION get_contact()
+    Print "Please select contact method.
+           1) phone number 
+           2) Email 
+           Please select with number: "
+    Read contact_method
+    DOWHILE contact_method != 1 and contact_method != 2
+        Print "Error: Invalid contact input"
+        Print "Please select contact method.
+               1) phone number 
+               2) Email 
+               Please select with number: "
+        Read contact_method
+    ENDDO
+    IF contact_method == 1 THEN
+        Print "Please enter phone number [r to return]: "
+        Read contact
+        DOWHILE contact != "r"
+            IF contact contains letter or contact < 10 or contact > 11 THEN
+                Print "Error: Invalid phone number (Phone number may contain alphabet, shorter than 10 digits or longer than 11 digits)
+                Print "Please enter phone number [r to return]: "
+                Read contact
+            ELSE
+                RETURN contact
+            ENDIF
+        ENDDO
+        IF contact == "r" THEN
+            RETURN CALL get_contact()
+        ENDIF
+    ELSE
+        Print "Please enter contact address [r to return]: "
+        Read contact
+        IF contact == "r" THEN
+            RETURN CALL get_contact()
+        ELSE
+            return contact
+        ENDIF
+    ENDIF
+ENDFUNCTION
+
+
+FUNCTION getID()
+    Open patients.txt file
+    Read patients.txt file
+    id_present = False
+    FOR EACH line IN patients.txt file
+        Read line
+        IF line starts with "Assigned ID        : " THEN
+            latest_id = line
+            id_present = True
+        ENDIF
+    ENDFOR
+    Close patients.txt file
+    IF id_present == False THEN
+        id = "WCK0000"
+    ELSE
+        id = latest_id + 1
+    RETURN id
+ENDFUNCTION
+
+
+FUNCTION get_details()
+    Print "NEW PATIENT REGISTRATION"
+
+    location = CALL get_location()
+    age = CALL get_age()
+    vaccine = CALL vaccine_selection(age)
+    name = CALL get_name()
+    gender = CALL get_gender()
+    weight = CALL get_weight()
+    blood_type = CALL get_blood_type()
+    medical_history = CALL get_medical_history()
+    contact = CALL get_contact()
+    id = CALL getID()
+
+    Print "Registration details:
+           1) Assigned ID     : id
+           2) Location        : location
+           3) Age             : age
+           4) Vaccine         : vaccine
+           5) Name            : name
+           6) Gender          : gender
+           7) Weight(kg)      : weight
+           8) Blood type      : blood_type
+           9) Medical history : medical_history
+           10) Contact        : contact
+           Thank you for registering!
+           You may take your first vaccine dose at any time!"
+    
+    patients_file_details = [id, location, age, vaccine, name, gender, weight, blood_type, medical_history, contact]
+    Open patients.txt file
+    Write patients.txt file
+        FOR EACH item in patients_file_details
+            WRITE item TO patients.txt file
+        ENDFOR
+    Close patients.txt file
+
+    vaccination_file_details = [id, location, vaccine, name, "Dose 1", "Dose 2", "Completion"]
+    Open vaccination.txt file
+    Write vaccination.txt file
+        FOR EACH item in vaccination_file_details
+            WRITE item TO vaccination.txt file
+        ENDFOR
+    Close vaccination.txt file
+    RETURN
+ENDFUNCTION
+
+
+FUNCTION get_info_from_id()
+    Open patients.txt file
+    Read patients.txt file
+        exit_id = False
+        found_in_patients_file = False
+        DOWHILE found_in_patients_file == False
+            Print "Please enter id [r to return]: "
+            Read id
+            IF id == "r" THEN
+                exit_id = True
+                EXIT LOOP
+            ELSE
+                id_line_in_patients_file = 0
+                FOR EACH line in patients.txt file
+                    id_line_in_patients_file = id_line_in_patients_file + 1
+                    IF line starts with "Assigned ID        : " THEN
+                        patient_file_id = line
+                        IF id == patient_file_id THEN
+                            found_in_patients_file = True
+                            location = next line
+                            age = next line
+                            vaccine = next line
+                            name = next line
+                            gender = next line
+                            weight = next line
+                            blood_type = next line
+                            medical_history = next line
+                            contact = next line
+                            EXIT LOOP
+                        ENDIF
+                    ENDIF
+                ENDFOR
+                IF found_in_patients_file == False THEN
+                    Print "Error: Patient is not found"
+                ENDIF
+            ENDIF
+        ENDDO
+    Close patients.txt file
+
+    IF exit_id == True THEN
+        RETURN None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
+    ELSE
+        Open vaccination.txt file
+        Read vaccination.txt file
+            found_in_vaccination_file = False
+            DOWHILE found_in_vaccination_file == False
+                id_line_in_vaccination_file = 0
+                FOR EACH line in vaccination.txt file
+                    id_line_in_vaccination_file = id_line_in_vaccination_file + 1
+                    IF line starts with id THEN
+                        found_in_vaccination_file = True
+                        LOOP line FROM 1 TO 3 STEP 1
+                            next line
+                        ENDLOOP
+                        dose_1 = next line
+                        dose_2 = next line
+                        completion = next line
+                        EXIT LOOP
+                    ENDIF
+                ENDFOR
+            ENDDO
+        Close vaccination.txt file
+        RETURN check_id, location, age, vaccine, name, gender, weight, blood_type, medical_history, contact, dose_1, dose_2, completion, id_line_in_patient_file, id_line_in_vaccination_file
+ENDFUNCTION
+
+
+FUNCTION get_second_appointment(vaccine)
+    IF vaccine == "AF" THEN
+        second_appointment = today + 14 days
+        RETURN second_appointment + "which is 14 days from now."
+    ELSE
+        IF vaccine == "BV" THEN
+            second_appointment = today + 21 days
+            RETURN second_appointment + "which is 21 days from now."
+        ELSE
+            IF vaccine == "CZ" THEN
+                second_appointment = today + 21 days
+                RETURN second_appointment + "which is 21 days from now."
+            ELSE
+                second_appointment = today + 28 days
+                RETURN second_appointment + "which is 28 days from now."
+            ENDIF
+        ENDIF
+    ENDIF
+ENDFUNCTION
+
+
+FUNCTION vaccination_administration()
+    Print "VACCINE ADMINISTRATION"
+
+    id, location, age, vaccine, name, gender, weight, blood_type, medical_history, contact, dose_1, dose_2, completion, id_line_in_patient_file, id_line_in_vaccination_file = CALL get_info_from_id()
+
+    IF vaccine == "EC" THEN
+        Print "Vaccine dose:-
+               1) Dose 1
+               Dose 2 is not required for vaccine type 'EC'
+               Please select dose with number [r to return]: "
+        Read dose_administration
+        DOWHILE dose_administration != 1 and dose_administration != r 
+            Print "Error: Invalid input."
+            Print "Vaccine dose:-
+                   1) Dose 1
+                   Dose 2 is not required for vaccine type 'EC'
+                   Please select dose with number [r to return]: "
+            Read dose_administration
+        ENDDO
+        IF dose_administration == r THEN
+            PASS
+        ELSE
+            IF dose_1 == "COMPLETED"
+                Print "Your dose 1 has been completed previously.
+                        You have completed all vaccination required for vaccine type 'EC'!"
+            ELSE
+                Open vaccination.txt file
+                Read vaccination.txt file
+                    new_file_content = vaccination.txt
+                    new_file_content[id_line_in_vaccination_file + 3] = "Dose 1             : COMPLETED"
+                    new_file_content[id_line_in_vaccination_file + 5] = "Completion         : COMPLETED"
+                Write vaccination.txt file
+                    file = new_file_content
+                Close vaccination.txt file
+                Print "Dose 1 has been administered.
+                        Your vaccination has been completed, Thank you very much."
+            ENDIF
+        ENDIF
+    ELSE
+        IF vaccine == "AF" or vaccine == "BV" or vaccine == "CZ" or vaccine == "DM" THEN
+            Print "Vaccine dose:-
+                1) Dose 1
+                2) Dose 2
+                Please select dose with number [r to return]: "
+            Read dose_administration
+            DOWHILE dose_administration != 1 and dose_administration != 2 anddose_administration != r 
+                Print "Error: Invalid input"
+                Print "Vaccine dose:-
+                1) Dose 1
+                2) Dose 2
+                Please select dose with number [r to return]: "
+                Read dose_administration
+            ENDDO
+            IF dose_administration == r THEN
+                PASS
+            ELSE
+                IF dose_administration == 1 THEN
+                    IF dose_1 == "COMPLETED" THEN
+                        Print "Your dose 1 has been completed previously."
+                    ELSE
+                        Open vaccination.txt file
+                        Read vaccination.txt file
+                            new_file_content = vaccination.txt
+                            new_file_content[id_line_in_vaccination_file + 3] = "Dose 1             : COMPLETED"
+                        Write vaccination.txt file
+                            file = new_file_content
+                        Close vaccination.txt file
+                        Print "Dose 1 has been administered.
+                            Your first vaccination has been completed, Thank you very much.
+                            Your recommended date for second dose: " + CALL get_second_appointment(vaccine) + "\n") been completed, Thank you very much."
+                    ENDIF
+                ELSE
+                    IF dose_1 != "COMPLETED" THEN
+                        Print "Your first dose has not yet been completed, please complete your first dose."
+                    ELSE
+                        IF dose_2 == "COMPLETED" THEN
+                            Print "Your dose 2 has been completed previously.
+                                    You have completed all vaccination required for your vaccine type!"
+                        ELSE
+                            Open vaccination.txt file
+                            Read vaccination.txt file
+                                new_file_content = vaccination.txt
+                                new_file_content[id_line_in_vaccination_file + 4] = "Dose 2             : COMPLETED"
+                                new_file_content[id_line_in_vaccination_file + 5] = "Completion         : COMPLETED"
+                            Write vaccination.txt file
+                                file = new_file_content
+                            Close vaccination.txt file
+                            Print ""Dose 2 has been administered.
+                                    Your second vaccination has been completed
+                                    You have completed all of your vaccination!
+                                    Thank you!"
+                        ENDIF
+                    ENDIF
+                ENDIF
+            ENDIF
+        ELSE
+            PASS
+        ENDIF
+    ENDIF
+    RETURN
+ENDFUNCTION
+
+
+FUNCTION patient_record()
+    Print "PATIENT RECORD AND VACCINATION STATUS"
+    id, location, age, vaccine, name, gender, weight, blood_type, medical_history, contact, dose_1, dose_2, completion, id_line_in_patient_file, id_line_in_vaccination_file = CALL get_info_from_id()
+    IF id == None THEN
+        PASS
+    ELSE
+        IF dose_1 == "-" THEN
+            dose_1 = "INCOMPLETE"
+            dose_2 = "INCOMPLETE"
+            completion = "NEW"
+        ELSE
+            IF dose_1 = "COMPLETED" and completion = "COMPLETED" THEN
+                PASS
+            ELSE
+                dose_2 = "INCOMPLETE"
+                completion = "COMPLETED-D1"
+            ENDIF
+        ENDIF
+        Print "Patient record and vaccination status:-\n
+            Assigned ID        : id
+            Location           : location
+            Age                : age
+            Vaccine            : vaccine
+            Name               : name
+            Gender             : gender
+            Weight(kg)         : weight
+            Blood type         : blood_type
+            Medical history    : medical_history
+            Contact            : contact
+            Dose 1             : dose_1
+            Dose 2             : dose_2
+            Status             : completion
+    ENDIF
+    RETURN
+ENDFUNCTION
+
+
+FUNCTION get_vc1_info()
+    vc1_count = 0
+    vc1_dose1 = 0
+    vc1_dose2 = 0
+    vc1_completed = 0
+    Open vaccination.txt file
+    Read vaccination.txt file
+        FOR EACH line IN vaccination.txt file
+            IF line starts with "Location           : VC1" THEN
+                LOOP line FROM 1 TO 2 STEP 1
+                    next line
+                ENDLOOP
+                IF next line starts with "Dose 1             : COMPLETED" THEN
+                    vc1_dose2 = vc1_dose2 + 1
+                ELSE
+                    vc1_dose1 = vc1_dose1 + 1
+                ENDIF
+                next line
+                IF next line starts with "Completion         : COMPLETED" THEN
+                    vc1_completed = vc1_completed + 1
+                    vc1_dose2 = vc1_dose2 - 1
+                ENDIF
+                vc1_count = vc1_count + 1
+            ENDIF
+        ENDFOR
+    Close vaccination.txt file
+    Print "VC1
+           Total amount of patient       : vc1_count
+           Waiting for dose 1            : vc1_dose1
+           Waiting for dose 2            : vc1_dose2
+           Completed                     : vc1_completed"
+    RETURN
+ENDFUNCTION
+
+
+FUNCTION get_vc2_info()
+    vc2_count = 0
+    vc2_dose1 = 0
+    vc2_dose2 = 0
+    vc2_completed = 0
+    Open vaccination.txt file
+    Read vaccination.txt file
+        FOR EACH line IN vaccination.txt file
+            IF line starts with "Location           : VC2" THEN
+                LOOP line FROM 1 TO 2 STEP 1
+                    next line
+                ENDLOOP
+                IF next line starts with "Dose 1             : COMPLETED" THEN
+                    vc2_dose2 = vc2_dose2 + 1
+                ELSE
+                    vc2_dose1 = vc2_dose1 + 1
+                ENDIF
+                next line
+                IF next line starts with "Completion         : COMPLETED" THEN
+                    vc2_completed = vc2_completed + 1
+                    vc2_dose2 = vc2_dose2 - 1
+                ENDIF
+                vc2_count = vc2_count + 1
+            ENDIF
+        ENDFOR
+    Close vaccination.txt file
+    Print "VC2
+           Total amount of patient       : vc2_count
+           Waiting for dose 1            : vc2_dose1
+           Waiting for dose 2            : vc2_dose2
+           Completed                     : vc2_completed"
+    RETURN
+ENDFUNCTION
+
+
+FUNCTION statistic()
+    Print "STATISTICAL INFORMATION
+           Information of VC1 and VC2.
+           1) VC1
+           2) VC2
+           Please select VC to view statistical information: "
+    Read option
+    DOWHILE option != "1" and option != "2"
+        Print "Error: Inavlid VC."
+        Print "STATISTICAL INFORMATION
+               Information of VC1 and VC2.
+               1) VC1
+               2) VC2
+               Please select VC to view statistical information: "
+        Read option
+    ENDDO
+    IF option == 1 THEN
+        CALL get_vc1_info()
+    ELSE
+        CALL get_vc2_info()
+    ENDIF
+    RETURN
+ENDFUNCTION
+
+
+FUNCTION main_menu()
+    Print "WELCOME TO MAIN MENU OF VACCINATION PAGE
+            Please select the following:-
+            1) New patient registration
+            2) Vaccine administration
+            3) Patient record and vaccination status
+            4) Statistical information on vaccination
+            [-1 to exit program]
+            Option: "
+    Read option
+    DOWHILE option != -1
+        IF option == 1 THEN
+            CALL get_details()
+        ELSE
+            IF option == 2 THEN
+                CALL vaccination_administration()
+            ELSE
+                IF option == 3 THEN
+                    CALL patient_record()
+                ELSE
+                    IF option == 4 THEN
+                        CALL statistic()
+                    ELSE
+                        Print "Error: Invalid selection."
+                    ENDIF
+                ENDIF
+            ENDIF
+        ENDIF
+        Print "Press enter to continue to main menu [-1 to exit]"
+        Read option
+        DOWHILE option != "" and option != -1
+            Print "Error: Invalid input."
+            Print "Press enter to continue to main menu [-1 to exit]"
+            Read option
+        ENDDO
+        IF option == "" THEN
+            Print "WELCOME TO MAIN MENU OF VACCINATION PAGE
+                    Please select the following:-
+                    1) New patient registration
+                    2) Vaccine administration
+                    3) Patient record and vaccination status
+                    4) Statistical information on vaccination
+                    [-1 to exit program]
+                    Option: "
+            Read option
+        ENDIF    
+    ENDDO
+    Print "Program has terminated..."
+    RETURN
+ENDFUNCTION
+
+
+PROGRAM vaccine_management
+BEGIN
+    CALL main_menu()
+END
